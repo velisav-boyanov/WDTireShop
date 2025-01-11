@@ -12,8 +12,7 @@
 <body>
     <!-- FRONT -->
     <nav class="navbar navbar-expand-lg"
-    :class="{'navbar-light bg-light': !useDarkNavbar,
-            'navbar-dark bg-dark': useDarkNavbar}">
+    :class="navbarClasses">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">VNL Tires</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -66,7 +65,17 @@
                         }
                     ]
                 }    
-            }
+            },
+            computed: {
+                navbarClasses() {
+                    return {
+                        'navbar-light': !this.useDarkNavbar,
+                        'bg-light' : !this.useDarkNavbar,
+                        'navbar-dark': this.useDarkNavbar,
+                        'bg-dark' : this.useDarkNavbar
+                    }
+                }    
+            }    
         }).mount('body')
     </script>
 </body>
