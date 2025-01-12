@@ -35,7 +35,7 @@
                 <button
                 class="btn btn-primary"
                 :disabled="isFormInvalid"
-                @click.prevent="pageCreated({pageTitle, content})">
+                @click.prevent="pageCreated({pageTitle, content, image})">
                 Add Product
                 </button>
             </div>

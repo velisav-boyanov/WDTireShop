@@ -24,8 +24,14 @@
 
     <find-page
     v-if="activePage == 2"
-    :found-page="foundPage">
+    :search-for-page="searchForPage">
     </find-page>
+
+    <show-list
+    v-if="activePage == 2"
+    :cards="foundPages">
+    </show-list> 
+
 </template>
 
 <script>
@@ -33,6 +39,7 @@ import PageViewer from './components/PageViewer.vue';
 import Navbar from './components/Navbar.vue';
 import CreatePage from './components/CreatePage.vue';
 import ShowList from './components/ShowList.vue';
+import FindPage from './components/FindPage.vue';
 
     export default{
         components:
@@ -40,7 +47,8 @@ import ShowList from './components/ShowList.vue';
             Navbar,
             PageViewer,
             CreatePage,
-            ShowList
+            ShowList,
+            FindPage
         },
         created(){
             this.getPages();
@@ -50,7 +58,8 @@ import ShowList from './components/ShowList.vue';
             return{
                 activePage : 0,
                 pages : [],
-                cards : []
+                cards : [],
+                foundPages : []
             };    
         },
         methods: {
@@ -73,6 +82,9 @@ import ShowList from './components/ShowList.vue';
                     this.cards.pop();  
                 }
                 this.cards.push(pageObj);
+            },
+            searchForPage(searchObj) {
+                this.foundPages = this.cards.filter(card => card.pageTitle.includes(searchObj.searchKey));
             }
         }
     }
