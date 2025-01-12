@@ -32,6 +32,17 @@
     :cards="foundPages">
     </show-list> 
 
+    <div align="center" class="cus-container">
+        <h2 class="cus">
+            Our custom selection:
+        </h2>
+    </div>
+
+    <show-list
+    v-if="activePage == 0"
+    :cards="old">
+    </show-list>
+
 </template>
 
 <script>
@@ -53,13 +64,15 @@ import FindPage from './components/FindPage.vue';
         created(){
             this.getPages();
             this.getCards();
+            this.getOldCards();
         },
         data() {
             return{
                 activePage : 0,
                 pages : [],
                 cards : [],
-                foundPages : []
+                foundPages : [],
+                old : []
             };    
         },
         methods: {
@@ -69,15 +82,21 @@ import FindPage from './components/FindPage.vue';
 
                 this.pages = data;
             },
+            async getOldCards(){
+                let res = await fetch('cards.json')
+                let data = await res.json();
+
+                this.old = data;
+            },
             getCards(){
                 this.cards = [{
-                pageTitle: "No tires added.",
+                pageTitle: "No customer tires added.",
                 content: "Please check again later."
                 }]
             },
             pageCreated(pageObj) {
-                if(this.cards.length == 1 
-                && this.cards[0].pageTitle.includes("No tires added."))
+                if(this.cards.length > 0 
+                && this.cards.filter(card => card.content.includes("No customer tires added.")))
                 {
                     this.cards.pop();  
                 }
@@ -96,3 +115,10 @@ import FindPage from './components/FindPage.vue';
         }
     }
 </script>
+
+<style :scoped>
+h2.cus {
+    margin-top: 10px;
+    color: blue;
+}
+</style>
