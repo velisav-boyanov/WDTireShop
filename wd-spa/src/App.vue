@@ -85,6 +85,13 @@ import FindPage from './components/FindPage.vue';
             },
             searchForPage(searchObj) {
                 this.foundPages = this.cards.filter(card => card.pageTitle.includes(searchObj.searchKey));
+                if(searchObj.contentToo){
+                    if(this.foundPages.length == 0){
+                        this.foundPages = this.cards.filter(card => card.content.includes(searchObj.searchKey));   
+                    }else{
+                        this.foundPages.concat(this.cards.filter(card => card.content.includes(searchObj.searchKey)));
+                    }
+                }
             }
         }
     }
