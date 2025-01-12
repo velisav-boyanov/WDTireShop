@@ -5,13 +5,13 @@
         "content":  "This is the home page content"
     }, 
     {
-        "link": {"text": "About", "url": "about.html"},
-        "pageTitle": "About Page",
-        "content":  "This is the about page content"
+        "link": {"text": "Add Product", "url": "about.html"},
+        "pageTitle": "Use the below form to add tires to the catalogue.",
+        "content":  "All fiels have to be full before submiting!"
     },
     {
-        "link": {"text": "Contact", "url": "contact.html"},
-        "pageTitle": "Contact Page",
-        "content":  "This is the contact page content"
+        "link": {"text": "Search", "url": "contact.html"},
+        "pageTitle": "Search Page",
+        "content":  "Input search entry to get started."
     }
 ]
