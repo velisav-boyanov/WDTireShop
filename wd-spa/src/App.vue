@@ -32,7 +32,10 @@
     :cards="foundPages">
     </show-list> 
 
-    <div align="center" class="cus-container">
+    <div 
+    v-if="activePage == 0"
+    align="center" 
+    class="cus-container">
         <h2 class="cus">
             Our custom selection:
         </h2>
